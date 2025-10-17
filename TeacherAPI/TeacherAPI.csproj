@@ -1,0 +1,66 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.cs" />
+    <Compile Include="obj\Debug\net8.0\TeacherAPI.AssemblyInfo.cs" />
+    <Compile Include="obj\Debug\net8.0\TeacherAPI.GlobalUsings.g.cs" />
+    <Compile Include="obj\Debug\net8.0\TeacherAPI.MvcApplicationPartsAssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="obj\Debug\net8.0\ApiEndpoints.json" />
+    <Content Include="obj\Debug\net8.0\EndpointInfo\TeacherAPI.json" />
+    <Content Include="obj\Debug\net8.0\rjsmcshtml.dswa.cache.json" />
+    <Content Include="obj\Debug\net8.0\rjsmrazor.dswa.cache.json" />
+    <Content Include="obj\Debug\net8.0\rpswa.dswa.cache.json" />
+    <Content Include="obj\Debug\net8.0\staticwebassets.build.endpoints.json" />
+    <Content Include="obj\Debug\net8.0\staticwebassets.build.json" />
+    <Content Include="obj\Debug\net8.0\staticwebassets.references.upToDateCheck.txt" />
+    <Content Include="obj\Debug\net8.0\staticwebassets.removed.txt" />
+    <Content Include="obj\Debug\net8.0\TeacherAPI.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\TeacherAPI.csproj.nuget.dgspec.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="obj\Debug\net8.0\apphost.exe" />
+    <None Include="obj\Debug\net8.0\EndpointInfo\TeacherAPI.OpenApiFiles.cache" />
+    <None Include="obj\Debug\net8.0\refint\TeacherAPI.dll" />
+    <None Include="obj\Debug\net8.0\ref\TeacherAPI.dll" />
+    <None Include="obj\Debug\net8.0\staticwebassets.build.json.cache" />
+    <None Include="obj\Debug\net8.0\TeacherAPI.AssemblyInfoInputs.cache" />
+    <None Include="obj\Debug\net8.0\TeacherAPI.assets.cache" />
+    <None Include="obj\Debug\net8.0\TeacherAPI.csproj.AssemblyReference.cache" />
+    <None Include="obj\Debug\net8.0\TeacherAPI.csproj.BuildWithSkipAnalyzers" />
+    <None Include="obj\Debug\net8.0\TeacherAPI.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\net8.0\TeacherAPI.csproj.Up2Date" />
+    <None Include="obj\Debug\net8.0\TeacherAPI.dll" />
+    <None Include="obj\Debug\net8.0\TeacherAPI.GeneratedMSBuildEditorConfig.editorconfig" />
+    <None Include="obj\Debug\net8.0\TeacherAPI.genruntimeconfig.cache" />
+    <None Include="obj\Debug\net8.0\TeacherAPI.MvcApplicationPartsAssemblyInfo.cache" />
+    <None Include="obj\Debug\net8.0\TeacherAPI.pdb" />
+    <None Include="obj\TeacherAPI.csproj.nuget.g.props" />
+    <None Include="obj\TeacherAPI.csproj.nuget.g.targets" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="obj\Debug\net8.0\staticwebassets\" />
+  </ItemGroup>
+
+</Project>
