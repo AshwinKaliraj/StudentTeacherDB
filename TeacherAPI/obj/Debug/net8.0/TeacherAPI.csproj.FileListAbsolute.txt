@@ -156,6 +156,7 @@ C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\D
 C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\Debug\net8.0\TeacherAPI.csproj.CoreCompileInputs.cache
 C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\Debug\net8.0\TeacherAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\Debug\net8.0\TeacherAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\Debug\net8.0\TeacherAPI.sourcelink.json
 C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\Debug\net8.0\rjimswa.dswa.cache.json
 C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
@@ -170,4 +171,3 @@ C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\D
 C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\Debug\net8.0\TeacherAPI.pdb
 C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\Debug\net8.0\TeacherAPI.genruntimeconfig.cache
 C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\Debug\net8.0\ref\TeacherAPI.dll
-C:\Users\ashwin.kaliraj\OneDrive - psiog.com\Desktop\TeacherAPI\TeacherAPI\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

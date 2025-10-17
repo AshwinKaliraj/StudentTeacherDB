@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TeacherAPI.Data;
 using TeacherAPI.Models;
 using System.Linq;
 
 namespace TeacherAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class TeacherController : ControllerBase
     {
         private readonly TeacherDbContext _context;
@@ -16,77 +17,58 @@ namespace TeacherAPI.Controllers
             _context = context;
         }
 
-        // ✅ GET: api/Teacher
         [HttpGet]
-        public IActionResult GetAllTeachers()
+        [Authorize(Policy = "TeacherPolicy")]
+        public IActionResult GetTeachers()
         {
-            var teachers = _context.Details
-                .Where(d => d.Designation == "Teacher")
-                .ToList();
-
-            return Ok(teachers);
+            return Ok(_context.Details.Where(d => d.Designation == "Teacher").ToList());
         }
 
-        // ✅ GET: api/Teacher/{id}
         [HttpGet("{id}")]
-        public IActionResult GetTeacherById(int id)
+        [Authorize(Policy = "TeacherPolicy")]
+        public IActionResult GetTeacher(int id)
         {
-            var teacher = _context.Details
-                .FirstOrDefault(d => d.Id == id && d.Designation == "Teacher");
-
-            if (teacher == null)
-                return NotFound("Teacher not found.");
-
+            var teacher = _context.Details.FirstOrDefault(d => d.Id == id && d.Designation == "Teacher");
+            if (teacher == null) return NotFound();
             return Ok(teacher);
         }
 
-        // ✅ POST: api/Teacher
         [HttpPost]
+        [Authorize(Policy = "TeacherPolicy")]
         public IActionResult AddTeacher([FromBody] Details teacher)
         {
-            if (teacher == null)
-                return BadRequest("Invalid data.");
-
-            teacher.Designation = "Teacher"; // Force designation as Teacher
+            teacher.Designation = "Teacher";
             _context.Details.Add(teacher);
             _context.SaveChanges();
-
-            return Ok("Teacher added successfully.");
+            return Ok("Teacher added");
         }
 
-        // ✅ PUT: api/Teacher/{id}
         [HttpPut("{id}")]
-        public IActionResult UpdateTeacher(int id, [FromBody] Details updatedTeacher)
+        [Authorize(Policy = "TeacherPolicy")]
+        public IActionResult UpdateTeacher(int id, [FromBody] Details updated)
         {
-            var teacher = _context.Details
-                .FirstOrDefault(d => d.Id == id && d.Designation == "Teacher");
+            var teacher = _context.Details.FirstOrDefault(d => d.Id == id && d.Designation == "Teacher");
+            if (teacher == null) return NotFound();
 
-            if (teacher == null)
-                return NotFound("Teacher not found.");
-
-            teacher.Name = updatedTeacher.Name;
-            teacher.DOB = updatedTeacher.DOB;
-            teacher.Email = updatedTeacher.Email;
-            teacher.Password = updatedTeacher.Password;
+            teacher.Name = updated.Name;
+            teacher.DOB = updated.DOB;
+            teacher.Email = updated.Email;
+            teacher.Password = updated.Password;
 
             _context.SaveChanges();
-            return Ok("Teacher updated successfully.");
+            return Ok("Teacher updated");
         }
 
-        // ✅ DELETE: api/Teacher/{id}
         [HttpDelete("{id}")]
+        [Authorize(Policy = "TeacherPolicy")]
         public IActionResult DeleteTeacher(int id)
         {
-            var teacher = _context.Details
-                .FirstOrDefault(d => d.Id == id && d.Designation == "Teacher");
-
-            if (teacher == null)
-                return NotFound("Teacher not found.");
+            var teacher = _context.Details.FirstOrDefault(d => d.Id == id && d.Designation == "Teacher");
+            if (teacher == null) return NotFound();
 
             _context.Details.Remove(teacher);
             _context.SaveChanges();
-
-            return Ok("Teacher deleted successfully.");
+            return Ok("Teacher deleted");
         }
     }
 }

@@ -13,46 +13,50 @@ namespace TeacherAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly TeacherDbContext _context;
-        private readonly IConfiguration _configuration;
+        private readonly IConfiguration _config;
 
-        public AuthController(TeacherDbContext context, IConfiguration configuration)
+        public AuthController(TeacherDbContext context, IConfiguration config)
         {
             _context = context;
-            _configuration = configuration;
+            _config = config;
         }
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {
-            if (request == null)
-                return BadRequest("Request is null.");
+            if (request == null || string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+                return BadRequest("Invalid request.");
 
-            var user = _context.Details
-                .FirstOrDefault(d => d.Email == request.Email && d.Password == request.Password);
-
+            // Find user in database
+            var user = _context.Details.FirstOrDefault(u => u.Email == request.Email && u.Password == request.Password);
             if (user == null)
                 return Unauthorized("Invalid email or password.");
 
-            // Generate JWT
+            // Generate JWT Token
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+            var key = Encoding.ASCII.GetBytes(_config["Jwt:Key"]);
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim(ClaimTypes.Name, user.Name),
-                    new Claim(ClaimTypes.Role, user.Designation)
+                    new Claim(ClaimTypes.Name, user.Email),
+                    new Claim(ClaimTypes.Role, user.Designation) // Teacher or Student
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(double.Parse(_configuration["Jwt:DurationInMinutes"])),
-                Issuer = _configuration["Jwt:Issuer"],
-                Audience = _configuration["Jwt:Audience"],
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                Expires = DateTime.UtcNow.AddHours(2),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+                Issuer = _config["Jwt:Issuer"],
+                Audience = _config["Jwt:Audience"]
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var jwtToken = tokenHandler.WriteToken(token);
 
-            return Ok(new { token = jwtToken, expiration = token.ValidTo });
+            return Ok(new
+            {
+                token = jwtToken,
+                role = user.Designation
+            });
         }
     }
 }

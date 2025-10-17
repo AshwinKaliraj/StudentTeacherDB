@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TeacherAPI.Data;
-using TeacherAPI.Models;
 using System.Linq;
 
 namespace TeacherAPI.Controllers
@@ -17,16 +16,12 @@ namespace TeacherAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Student
         [HttpGet]
         [Authorize(Policy = "StudentPolicy")]
         public IActionResult GetStudents()
         {
-            // Only return records with Designation = "Student"
-            var students = _context.Details
-                .Where(d => d.Designation == "Student")
-                .ToList();
-
+            // Only returns students
+            var students = _context.Details.Where(d => d.Designation == "Student").ToList();
             return Ok(students);
         }
     }
